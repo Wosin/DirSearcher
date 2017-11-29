@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
+import javax.websocket.server.PathParam;
+
 @RestController
 public class Rest {
     @Autowired
     private FileSearcher fileSearcher;
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public Collection<String> search(@RequestBody String searchPhrase) {
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public Collection<String> search(@PathParam("searchPhrase") String searchPhrase) {
         return fileSearcher.searchFile(searchPhrase);
     }
 }
